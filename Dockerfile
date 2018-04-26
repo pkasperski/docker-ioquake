@@ -18,6 +18,8 @@ RUN curl -o quake3-latest-pk3s.zip 'https://www.ioquake3.org/data/quake3-latest-
     unzip cpma-1.50-nomaps.zip && rm cpma-1.50-nomaps.zip && \
     curl -o cpma-mappack-full.zip https://cdn.playmorepromode.com/files/cpma-mappack-full.zip && \
     unzip -d /server/baseq3/ cpma-mappack-full.zip && rm cpma-mappack-full.zip && \
+    curl -o cnq3-1.50.zip https://cdn.playmorepromode.com/files/latest/cnq3-1.50.zip && \
+    unzip -d /server/cpma/ cnq3-1.50.zip && rm cnq3-1.50.zip && \
     wget https://raw.githubusercontent.com/ioquake/ioq3/master/misc/linux/start_server.sh && chmod +x start_server.sh
 
 # server
