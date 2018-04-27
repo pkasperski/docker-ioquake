@@ -19,8 +19,7 @@ RUN curl -o quake3-latest-pk3s.zip 'https://www.ioquake3.org/data/quake3-latest-
     curl -o cpma-mappack-full.zip https://cdn.playmorepromode.com/files/cpma-mappack-full.zip && \
     unzip -d /server/baseq3/ cpma-mappack-full.zip && rm cpma-mappack-full.zip && \
     curl -o cnq3-1.50.zip https://cdn.playmorepromode.com/files/latest/cnq3-1.50.zip && \
-    unzip -d /server/cpma/ cnq3-1.50.zip && rm cnq3-1.50.zip && \
-    wget https://raw.githubusercontent.com/ioquake/ioq3/master/misc/linux/start_server.sh && chmod +x start_server.sh
+    unzip -d /server/cpma/ -o cnq3-1.50.zip && rm cnq3-1.50.zip && chmod +x ./cpma/cnq3-server*
 
 # server
 FROM debian:stretch
@@ -29,8 +28,10 @@ EXPOSE 27960
 
 COPY --from=builder /server /server
 COPY ./configs/* /server/baseq3/
+COPY ./server*.sh /server/
 
 WORKDIR /server
 
-ENTRYPOINT [ "./ioq3ded.x86_64", "+exec", "server.cfg", "+exec", "levels.cfg", "+exec", "bots.cfg" ]
-
+# CMD [ "./ioq3ded.x86_64", "+exec", "server.cfg", "+exec", "levels.cfg", "+exec", "bots.cfg" ]
+# CMD [ "./cpma/cnq3-server-x64", "+exec", "server.cfg", "+exec", "levels.cfg", "+exec", "bots.cfg" ]
+CMD [ "./server_start.sh" ]
